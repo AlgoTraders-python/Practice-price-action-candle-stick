@@ -51,6 +51,12 @@ flask-tradingview-app
 - Open your web browser and navigate to `http://127.0.0.1:5000` to view the TradingView chart.
 - The chart will fetch M5 candle data from the Flask API and display it.
 
+ ## Screenshot
+
+   ![Flask TradingView App Screenshot](./static/Screenshot 2025-03-16 150743.png)
+
+   *An example of the TradingView chart displaying M5 candle data*
+ 
 ## License
 
 This project is licensed under the MIT License.
