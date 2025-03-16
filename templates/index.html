@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M5 Candle Chart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://unpkg.com/lightweight-charts@4.1.2/dist/lightweight-charts.standalone.production.js"></script>
+    <style>
+        @keyframes blink {
+            50% { color: transparent; }
+        }
+
+        #chart-container {
+            height: 80vh; /* Take up most of the vertical space */
+            width: 100%;
+        }
+
+        body {
+            font-size: 0.9rem; /* Smaller font size for compactness */
+        }
+
+        .form-group {
+            margin-bottom: 0.2rem; /* Even less spacing between form elements */
+        }
+
+        h1 {
+            font-size: 1.5rem; /* Smaller heading */
+        }
+
+        .btn {
+            padding: 0.1rem 0.25rem; /* Even smaller button padding */
+            font-size: 0.7rem;
+        }
+
+        .form-check {
+            margin-bottom: 0.1rem; /* Less spacing for checkbox */
+        }
+    </style>
+</head>
+<body>
+    <div class="container"></div>
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" name="startDate" max="{{ today }}">
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" name="endDate" max="9999-12-31">
+        <button onclick="updateChartData()">Update Chart</button>
+   
+        <label for="range"> Range:</label>
+        <select id="range" onchange="setRange(this.value)">
+            <option value="1W">1 Week</option>
+            <option value="1M">1 Month</option>
+            <option value="3M">3 Months</option>
+            <option value="6M">6 Months</option>
+            <option value="1Y">1 Year</option>
+            <option value="YTD">Year to Date</option>
+            <option value="ALL">All</option>
+        </select>
+   
+        <label for="interval"> Interval:</label>
+        <select id="interval" onchange="setInterval(this.value)">
+            <option value="M5">M5</option>
+            <option value="M15">M15</option>
+            <option value="H1">H1</option>
+            <option value="D1">D1</option>
+        </select>
+   
+        <label for="symbol">Symbol:</label>
+        <select id="symbol" onchange="updateChartData()">
+            <option value="XAUUSD" selected>XAUUSD</option>
+            <option value="BTCUSD">BTCUSD</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="tickByTick">Tick by Tick:</label>
+        <input type="checkbox" id="tickByTick" onchange="toggleTickByTick()">
+  
+       <button id="nextButton" onclick="renderNextCandle()" style="display: none;" >Next</button>
+    </div>
+
+    <div>
+        <button onclick="setRandomDate()">Random Date</button>
+        <label id="dateRangeLabel">Date Range: </label>
+        <button onclick="copyChartToClipboard()">Copy Chart</button>
+        <label id="loadingLabel"></label>
+    </div>
+
+    <div id="chart-container">
+        <div id="tradingview-chart"></div>
+    </div>
+    <script src="{{ url_for('static', filename='js/chart.js') }}"></script>
+</body>
+</html>

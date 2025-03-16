@@ -1,0 +1,1 @@
+npx dukascopy-node -i xauusd -from 2020-01-13 -to 2025-02-25 -t m5 -f csv

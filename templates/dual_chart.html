@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dual Timeframe Chart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://unpkg.com/lightweight-charts@4.1.2/dist/lightweight-charts.standalone.production.js"></script>
+    <style>
+        #chart-container {
+            display: flex;
+            width: 100%;
+            height: 80vh; /* Adjust as needed */
+        }
+
+        .chart {
+            width: 50%; /* Each chart takes up half the container */
+            height: 100%;
+        }
+        .chart-controls {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+  
+    <div>
+        <label for="symbol">Symbol:</label>
+        <select id="symbol" onchange="updateCharts()">
+            <option value="XAUUSD" selected>XAUUSD</option>
+            <option value="BTCUSD">BTCUSD</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" name="startDate" max="{{ today }}">
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" name="endDate" max="9999-12-31">
+        <button onclick="updateCharts()">Update Chart</button>
+    </div>
+
+    <div class="chart-controls">
+        <label for="interval1">Chart 1 Interval:</label>
+        <select id="interval1" onchange="updateCharts()">
+            <option value="M5" selected>M5</option>
+            <option value="M15">M15</option>
+            <option value="H1">H1</option>
+            <option value="D1">D1</option>
+        </select>
+
+        <label for="interval2">Chart 2 Interval:</label>
+        <select id="interval2" onchange="updateCharts()">
+            <option value="H1" selected>H1</option>
+            <option value="M5">M5</option>
+            <option value="M15">M15</option>
+            <option value="D1">D1</option>
+        </select>
+    </div>
+
+    <div id="chart-container">
+        <div id="chart1" class="chart"></div>
+        <div id="chart2" class="chart"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dual_chart.js') }}"></script>
+</body>
+</html>
