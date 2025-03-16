@@ -53,7 +53,7 @@ flask-tradingview-app
 
  ## Screenshot
 
-   ![Flask TradingView App Screenshot](./static/Screenshot 2025-03-16 150743.png)
+   ![Flask TradingView App Screenshot](/static/Screenshot 2025-03-16 150743.png)
 
    *An example of the TradingView chart displaying M5 candle data*
  
